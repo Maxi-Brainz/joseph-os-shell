@@ -16,6 +16,12 @@ const buttonVariants = cva(
         secondary: "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
+        desktop: "rounded-md text-foreground hover:bg-glass-highlight focus-visible:ring-signal/70",
+        taskbar: "rounded-lg border border-transparent text-foreground hover:border-glass-border hover:bg-glass-highlight focus-visible:ring-signal/70",
+        iconGlass: "rounded-lg border border-glass-border bg-glass-highlight text-foreground hover:bg-glass-strong focus-visible:ring-signal/70",
+        widget: "rounded-md border border-glass-border bg-glass-highlight text-foreground hover:bg-glass-strong hover:text-signal focus-visible:ring-signal/70",
+        startApp: "rounded-md text-foreground hover:bg-glass-highlight focus-visible:ring-signal/70",
+        searchResult: "rounded-md text-foreground hover:bg-glass-highlight focus-visible:ring-signal/70",
       },
       size: {
         default: "h-9 px-4 py-2",

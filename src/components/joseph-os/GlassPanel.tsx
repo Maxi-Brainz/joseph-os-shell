@@ -1,10 +1,10 @@
-import type { HTMLAttributes, ReactNode } from "react";
+import { forwardRef, type HTMLAttributes, type ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
-export function GlassPanel({ className, children, ...props }: HTMLAttributes<HTMLDivElement> & { children: ReactNode }) {
+export const GlassPanel = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement> & { children: ReactNode }>(function GlassPanel({ className, children, ...props }, ref) {
   return (
-    <div className={cn("glass-panel", className)} {...props}>
+    <div ref={ref} className={cn("glass-panel", className)} {...props}>
       {children}
     </div>
   );
-}
+});

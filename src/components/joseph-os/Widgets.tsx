@@ -1,4 +1,4 @@
-import { Activity, Gauge, HardDrive, MemoryStick, Moon, Plus, Rocket, Sun, TerminalSquare } from "lucide-react";
+import { Activity, FolderKanban, Gauge, HardDrive, MemoryStick, Rocket, Settings, Sun, TerminalSquare } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { GlassPanel } from "./GlassPanel";
 import { Clock } from "./Clock";
@@ -14,7 +14,7 @@ export function MiniTerminalWidget() {
 }
 
 export function InspirationWidget() {
-  return <GlassPanel className="hidden w-[235px] p-4 2xl:block"><div className="flex gap-3"><div className="quote-mark">“</div><div><p className="text-xs leading-relaxed text-foreground/85">The future depends on what you build today.</p><p className="mt-2 text-[10px] text-mist">Daily inspiration</p></div></div></GlassPanel>;
+  return <GlassPanel className="inspiration-widget w-[230px] p-4"><div className="flex gap-3"><div className="quote-mark">“</div><div><p className="text-xs leading-relaxed text-foreground/85">The future depends on what you build today.</p><p className="mt-2 text-[10px] text-mist">Daily inspiration</p></div></div></GlassPanel>;
 }
 
 export function DateTimeWidget() {
@@ -26,11 +26,15 @@ export function SystemMonitorWidget() {
 }
 
 export function BuildingWidget() {
-  const items = ["ViaSanctorum", "IntelliFeed360", "FastTrack Faith"];
-  return <GlassPanel className="hidden w-[230px] p-3.5 xl:block"><div className="flex items-center justify-between"><p className="widget-title"><Rocket /> Currently building</p><span className="preview-badge">Preview</span></div><div className="mt-3 space-y-2.5">{items.map((item, index) => <div key={item} className="grid grid-cols-[auto_minmax(0,1fr)] items-center gap-2"><span className={`project-dot project-dot-${index + 1}`}/><div className="min-w-0"><p className="truncate text-[11px] font-medium">{item}</p><p className="text-[9px] text-mist">Project placeholder</p></div></div>)}</div></GlassPanel>;
+  const items = [
+    { name: "ViaSanctorum", status: "In workspace" },
+    { name: "IntelliFeed360", status: "Project entry" },
+    { name: "FastTrack Faith", status: "Project entry" },
+  ];
+  return <GlassPanel className="building-widget w-[230px] p-3.5"><div className="flex items-center justify-between"><p className="widget-title"><Rocket /> Currently building</p><span className="preview-badge">Preview</span></div><div className="mt-3 space-y-2.5">{items.map((item, index) => <div key={item.name} className="project-entry"><span className={`project-dot project-dot-${index + 1}`}/><div className="min-w-0"><p className="truncate text-[11px] font-medium">{item.name}</p><p className="text-[9px] text-mist">{item.status}</p></div></div>)}</div></GlassPanel>;
 }
 
 export function QuickActionsWidget({ onAction }: { onAction: (label: string) => void }) {
-  const actions = [{ label: "New Window", icon: Plus }, { label: "Terminal", icon: TerminalSquare }, { label: "Dark Mode", icon: Moon }];
-  return <GlassPanel className="hidden w-[230px] p-3.5 xl:block"><p className="widget-title">Quick actions</p><div className="mt-3 grid grid-cols-3 gap-2">{actions.map(({label, icon: Icon}) => <Button key={label} variant="widget" onClick={() => onAction(label)} className="h-14 flex-col gap-1 px-1"><Icon/><span className="text-[9px]">{label}</span></Button>)}</div></GlassPanel>;
+  const actions = [{ label: "Open Projects", target: "Projects", icon: FolderKanban }, { label: "Open Terminal", target: "Terminal", icon: TerminalSquare }, { label: "Open Settings", target: "Settings", icon: Settings }];
+  return <GlassPanel className="quick-actions-widget w-[230px] p-3.5"><p className="widget-title">Quick actions</p><div className="mt-3 grid grid-cols-3 gap-2">{actions.map(({label, target, icon: Icon}) => <Button key={label} variant="widget" onClick={() => onAction(target)} className="h-[58px] flex-col gap-1 px-1" title={label}><Icon/><span className="text-[9px] leading-tight">{label.replace("Open ", "")}</span></Button>)}</div></GlassPanel>;
 }

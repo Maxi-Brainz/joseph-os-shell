@@ -22,6 +22,8 @@ const buttonVariants = cva(
         widget: "rounded-md border border-glass-border bg-glass-highlight text-foreground hover:bg-glass-strong hover:text-signal focus-visible:ring-signal/70",
         startApp: "rounded-md text-foreground hover:bg-glass-highlight focus-visible:ring-signal/70",
         searchResult: "rounded-md text-foreground hover:bg-glass-highlight focus-visible:ring-signal/70",
+        startSearch: "rounded-md border border-glass-border bg-glass-highlight text-mist hover:bg-glass-strong focus-visible:ring-signal/70",
+        recommendation: "rounded-md text-foreground hover:bg-glass-highlight focus-visible:ring-signal/70",
       },
       size: {
         default: "h-9 px-4 py-2",

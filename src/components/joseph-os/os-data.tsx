@@ -11,8 +11,10 @@ import {
   UserRound,
 } from "lucide-react";
 
+export type ApplicationId = "about" | "projects" | "skills" | "experience" | "resume" | "blog" | "terminal" | "contact" | "settings";
+
 export type AppDefinition = {
-  id: string;
+  id: ApplicationId;
   label: string;
   hint: string;
   icon: LucideIcon;

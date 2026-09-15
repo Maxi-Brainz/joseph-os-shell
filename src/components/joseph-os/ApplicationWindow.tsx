@@ -1,5 +1,5 @@
 import { Maximize2, Minimize2, X } from "lucide-react";
-import { useEffect, useRef, type PointerEvent as ReactPointerEvent } from "react";
+import { useEffect, useRef, type PointerEvent as ReactPointerEvent, type RefObject } from "react";
 import { Button } from "@/components/ui/button";
 import type { ManagedWindow, WindowGeometry } from "./WindowManager";
 import { applicationRegistry } from "./application-registry";
@@ -7,7 +7,7 @@ import { useWindowManager } from "./WindowManager";
 
 type ResizeDirection = "n" | "s" | "e" | "w" | "ne" | "nw" | "se" | "sw";
 
-export function ApplicationWindow({ window: managedWindow, workspaceRef }: { window: ManagedWindow; workspaceRef: React.RefObject<HTMLElement | null> }) {
+export function ApplicationWindow({ window: managedWindow }: { window: ManagedWindow }) {
   const { focusWindow, closeWindow, minimizeWindow, toggleMaximizeWindow, updateWindowGeometry } = useWindowManager();
   const interaction = useRef<{ type: "drag" | "resize"; direction?: ResizeDirection; startX: number; startY: number; geometry: WindowGeometry } | null>(null);
   const app = applicationRegistry[managedWindow.appId];
@@ -76,7 +76,7 @@ export function ApplicationWindow({ window: managedWindow, workspaceRef }: { win
   );
 }
 
-export function WindowLayer({ workspaceRef }: { workspaceRef: React.RefObject<HTMLElement | null> }) {
+export function WindowLayer({ workspaceRef: _workspaceRef }: { workspaceRef: RefObject<HTMLElement | null> }) {
   const { windows } = useWindowManager();
-  return <div className="window-layer" aria-label="Open applications">{windows.filter((window) => !window.isMinimized).map((window) => <ApplicationWindow key={window.windowId} window={window} workspaceRef={workspaceRef} />)}</div>;
+  return <div className="window-layer" aria-label="Open applications">{windows.filter((window) => !window.isMinimized).map((window) => <ApplicationWindow key={window.windowId} window={window} />)}</div>;
 }

@@ -64,7 +64,7 @@ export function WindowManagerProvider({ children }: { children: ReactNode }) {
       ...window,
       isFocused: window.windowId === windowId,
       zIndex: window.windowId === windowId ? nextZ : window.zIndex,
-      isMinimized: window.windowId === window.windowId ? (window.windowId === windowId ? false : window.isMinimized) : window.isMinimized,
+      isMinimized: window.windowId === windowId ? false : window.isMinimized,
     })));
   }, []);
 

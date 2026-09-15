@@ -151,7 +151,9 @@ export function WindowManagerProvider({ children }: { children: ReactNode }) {
       if (window.windowId !== windowId) return { ...window, isFocused: false };
       if (window.isMaximized) {
         const geometry = window.restoreGeometry ?? { x: 60, y: 42, width: window.width, height: window.height };
-        return { ...window, ...clampGeometry(geometry, window.minWidth, window.minHeight), isMaximized: false, isFocused: true, zIndex: zIndexRef.current, restoreGeometry: undefined };
+        const restored = { ...window, ...clampGeometry(geometry, window.minWidth, window.minHeight), isMaximized: false, isFocused: true, zIndex: zIndexRef.current };
+        delete restored.restoreGeometry;
+        return restored;
       }
       return { ...window, x: 12, y: 12, width: bounds.width, height: bounds.height, isMaximized: true, isFocused: true, zIndex: zIndexRef.current, restoreGeometry: { x: window.x, y: window.y, width: window.width, height: window.height } };
     }));
@@ -169,6 +171,7 @@ export function WindowManagerProvider({ children }: { children: ReactNode }) {
       const visible = [...current].filter((window) => !window.isMinimized).sort((a, b) => b.zIndex - a.zIndex);
       if (visible.length < 2) return current;
       const next = visible[1];
+      if (!next) return current;
       zIndexRef.current += 1;
       return current.map((window) => ({ ...window, isFocused: window.windowId === next.windowId, zIndex: window.windowId === next.windowId ? zIndexRef.current : window.zIndex }));
     });

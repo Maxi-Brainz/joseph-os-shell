@@ -1,5 +1,5 @@
 import { Maximize2, Minimize2, X } from "lucide-react";
-import { useEffect, useRef, type PointerEvent as ReactPointerEvent, type RefObject } from "react";
+import { useEffect, useRef, type PointerEvent as ReactPointerEvent } from "react";
 import { Button } from "@/components/ui/button";
 import type { ManagedWindow, WindowGeometry } from "./WindowManager";
 import { applicationRegistry } from "./application-registry";
@@ -47,7 +47,7 @@ export function ApplicationWindow({ window: managedWindow }: { window: ManagedWi
     event.preventDefault();
     event.stopPropagation();
     focusWindow(managedWindow.windowId);
-    interaction.current = { type, direction, startX: event.clientX, startY: event.clientY, geometry: { x: managedWindow.x, y: managedWindow.y, width: managedWindow.width, height: managedWindow.height } };
+    interaction.current = { type, ...(direction ? { direction } : {}), startX: event.clientX, startY: event.clientY, geometry: { x: managedWindow.x, y: managedWindow.y, width: managedWindow.width, height: managedWindow.height } };
     document.body.classList.add("window-interacting");
   };
 
@@ -76,7 +76,7 @@ export function ApplicationWindow({ window: managedWindow }: { window: ManagedWi
   );
 }
 
-export function WindowLayer({ workspaceRef: _workspaceRef }: { workspaceRef: RefObject<HTMLElement | null> }) {
+export function WindowLayer() {
   const { windows } = useWindowManager();
   return <div className="window-layer" aria-label="Open applications">{windows.filter((window) => !window.isMinimized).map((window) => <ApplicationWindow key={window.windowId} window={window} />)}</div>;
 }

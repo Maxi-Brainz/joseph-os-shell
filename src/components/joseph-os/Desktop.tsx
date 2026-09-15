@@ -45,7 +45,7 @@ function DesktopWorkspace() {
     <section className="desktop-identity" aria-label="Joseph OS"><div className="brand-monogram"><span>J</span><span>O</span></div><h1>JOSEPH OS</h1><p>BUILD <i/> CREATE <i/> IMPACT</p></section>
     <div className="motto" aria-label="Deus Vult"><span>Deus Vult</span><i/><b/></div>
     <aside className="right-widgets" aria-label="Desktop widgets"><InspirationWidget/><DateTimeWidget/><SystemMonitorWidget/><BuildingWidget/><QuickActionsWidget onAction={launch}/></aside>
-    <WindowLayer workspaceRef={workspaceRef}/>
+    <WindowLayer/>
     {notice && <div className="system-notice" role="status"><span className="status-dot"/><p>{notice}</p></div>}
     <Search open={searchOpen} onClose={() => setSearchOpen(false)} onLaunch={launch}/>
     <StartMenu open={startOpen} onClose={() => setStartOpen(false)} onSearch={() => { setStartOpen(false); setSearchOpen(true); }} onLaunch={launch}/>

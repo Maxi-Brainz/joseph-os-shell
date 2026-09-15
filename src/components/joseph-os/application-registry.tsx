@@ -10,19 +10,10 @@ import {
   SquareTerminal,
   UserRound,
 } from "lucide-react";
-import { applications as desktopApplications } from "./os-data";
+import { applications as desktopApplications, type ApplicationId } from "./os-data";
 import { PlaceholderApplication } from "./placeholder-apps";
 
-export type ApplicationId =
-  | "about"
-  | "projects"
-  | "skills"
-  | "experience"
-  | "resume"
-  | "blog"
-  | "terminal"
-  | "contact"
-  | "settings";
+export type { ApplicationId } from "./os-data";
 
 export type ApplicationDefinition = {
   id: ApplicationId;
@@ -60,22 +51,17 @@ const dimensions: Record<ApplicationId, Pick<ApplicationDefinition, "defaultWidt
   settings: { defaultWidth: 600, defaultHeight: 410, minWidth: 360, minHeight: 250 },
 };
 
-export const applicationRegistry: Record<ApplicationId, ApplicationDefinition> = Object.fromEntries(
-  desktopApplications.map((app) => {
-    const id = app.id as ApplicationId;
-    return [
-      id,
-      {
-        id,
-        name: app.label,
-        icon: icons[id],
-        ...dimensions[id],
-        resizable: true,
-        component: PlaceholderApplication,
-      },
-    ];
-  }),
-) as Record<ApplicationId, ApplicationDefinition>;
+export const applicationRegistry = desktopApplications.reduce<Record<ApplicationId, ApplicationDefinition>>((registry, app) => {
+  registry[app.id] = {
+    id: app.id,
+    name: app.label,
+    icon: icons[app.id],
+    ...dimensions[app.id],
+    resizable: true,
+    component: PlaceholderApplication,
+  };
+  return registry;
+}, {} as Record<ApplicationId, ApplicationDefinition>);
 
 export function applicationIdFromLabel(label: string) {
   const app = Object.values(applicationRegistry).find((entry) => entry.name === label);

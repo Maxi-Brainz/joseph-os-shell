@@ -7,7 +7,8 @@ import { Search } from "./Search";
 import { Taskbar } from "./Taskbar";
 import wallpaper from "@/assets/joseph-os-wallpaper.jpg";
 import { applicationIdFromLabel } from "./application-registry";
-import { WindowLayer, WindowManagerProvider, useWindowManager } from "./WindowManager";
+import { WindowLayer } from "./ApplicationWindow";
+import { WindowManagerProvider, useWindowManager } from "./WindowManager";
 
 export function Desktop() {
   return <WindowManagerProvider><DesktopWorkspace /></WindowManagerProvider>;

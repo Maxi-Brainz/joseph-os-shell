@@ -151,9 +151,8 @@ export function WindowManagerProvider({ children }: { children: ReactNode }) {
       if (window.windowId !== windowId) return { ...window, isFocused: false };
       if (window.isMaximized) {
         const geometry = window.restoreGeometry ?? { x: 60, y: 42, width: window.width, height: window.height };
-        const restored = { ...window, ...clampGeometry(geometry, window.minWidth, window.minHeight), isMaximized: false, isFocused: true, zIndex: zIndexRef.current };
-        delete restored.restoreGeometry;
-        return restored;
+        const { restoreGeometry: _restoreGeometry, ...windowWithoutRestoreGeometry } = window;
+        return { ...windowWithoutRestoreGeometry, ...clampGeometry(geometry, window.minWidth, window.minHeight), isMaximized: false, isFocused: true, zIndex: zIndexRef.current };
       }
       return { ...window, x: 12, y: 12, width: bounds.width, height: bounds.height, isMaximized: true, isFocused: true, zIndex: zIndexRef.current, restoreGeometry: { x: window.x, y: window.y, width: window.width, height: window.height } };
     }));

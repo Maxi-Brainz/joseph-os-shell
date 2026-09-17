@@ -57,4 +57,5 @@
 @media(max-width:479px){.desktop-icons{grid-template-rows:repeat(5,58px)}.desktop-icons button{width:70px;height:58px}.desktop-identity{top:12%;left:69%;transform:translateX(-50%) scale(.7)}.right-widgets>:nth-child(2){width:196px}.right-widgets{bottom:70px}.taskbar-apps button{width:34px}.taskbar-inner{padding-inline:6px}.system-tray{gap:4px}.start-menu{bottom:68px}.start-footer .profile-mark+div p:last-child{display:none}}
 @media(max-width:767px){.os-window{max-width:calc(100vw - 18px)}.window-content{padding:18px}.placeholder-application{gap:14px}.placeholder-application h2{font-size:20px}.placeholder-application-mark{width:48px;height:48px}.window-titlebar{min-height:38px}.window-controls button{width:26px;height:26px}}
 @media(max-height:760px){.inspiration-widget{display:none}.desktop-identity{top:13%;transform:translateX(-50%) scale(.84)}.motto{bottom:110px}}
+@media(max-height:559px){.desktop{min-height:100dvh}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}

@@ -1,3 +1,4 @@
+import type { ComponentType } from "react";
 import type { LucideIcon } from "lucide-react";
 import {
   BookOpenText,
@@ -11,9 +12,15 @@ import {
   UserRound,
 } from "lucide-react";
 import { applications as desktopApplications, type ApplicationId } from "./os-data";
+import { AboutApp } from "./about/AboutApp";
 import { PlaceholderApplication } from "./placeholder-apps";
 
 export type { ApplicationId } from "./os-data";
+
+export type ApplicationComponentProps = {
+  title: string;
+  icon: LucideIcon;
+};
 
 export type ApplicationDefinition = {
   id: ApplicationId;
@@ -24,7 +31,7 @@ export type ApplicationDefinition = {
   minWidth: number;
   minHeight: number;
   resizable: boolean;
-  component: typeof PlaceholderApplication;
+  component: ComponentType<ApplicationComponentProps>;
 };
 
 const icons: Record<ApplicationId, LucideIcon> = {
@@ -58,7 +65,7 @@ export const applicationRegistry = desktopApplications.reduce<Record<Application
     icon: icons[app.id],
     ...dimensions[app.id],
     resizable: true,
-    component: PlaceholderApplication,
+    component: app.id === "about" ? AboutApp : PlaceholderApplication,
   };
   return registry;
 }, {} as Record<ApplicationId, ApplicationDefinition>);

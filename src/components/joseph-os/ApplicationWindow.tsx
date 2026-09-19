@@ -70,7 +70,7 @@ export function ApplicationWindow({ window: managedWindow }: { window: ManagedWi
           <Button variant="iconGlass" size="icon" className="window-close" onClick={() => closeWindow(managedWindow.windowId)} aria-label={`Close ${managedWindow.title}`} title="Close"><X /></Button>
         </div>
       </header>
-      <div className="window-content"><AppContent title={managedWindow.title} icon={managedWindow.icon} /></div>
+      <div className={`window-content window-content-${managedWindow.appId}`}><AppContent title={managedWindow.title} icon={managedWindow.icon} /></div>
       {managedWindow.resizable && !managedWindow.isMaximized && resizeHandles.map((direction) => <span key={direction} className={`resize-handle resize-${direction}`} onPointerDown={(event) => beginInteraction(event, "resize", direction)} aria-hidden="true" />)}
     </section>
   );

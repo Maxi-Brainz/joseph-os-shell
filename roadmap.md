@@ -1,7 +1,7 @@
-# Phase 2 Window Manager
+# Phase 3A About Joseph Application Architecture
 
-- [x] Build centralized application registry and window manager state.
-- [x] Render reusable Joseph OS windows with placeholder application content.
-- [x] Add focus, z-order, dragging, resizing, minimize, maximize, restore, and close.
-- [x] Integrate desktop icons, Start Menu, Search, quick actions, and taskbar.
-- [x] Verify desktop, laptop, tablet, and full lifecycle interactions without Phase 1 regressions.
+- [ ] Build the reusable About application shell and section components.
+- [ ] Add accessible internal navigation and in-window scrolling.
+- [ ] Add wide and narrow window-responsive layouts in the Joseph OS visual language.
+- [ ] Register About without changing other application placeholders or the Window Manager.
+- [ ] Verify About navigation and the complete Phase 2 window lifecycle.

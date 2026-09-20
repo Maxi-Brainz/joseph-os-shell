@@ -1,4 +1,4 @@
-import { Compass, Fingerprint, Lightbulb, Route, UserRound, type LucideIcon } from "lucide-react";
+import { Fingerprint, Lightbulb, Route, UserRound, type LucideIcon } from "lucide-react";
 import { useRef, useState, type RefObject } from "react";
 import { Button } from "@/components/ui/button";
 import type { ApplicationComponentProps } from "../application-registry";
@@ -110,9 +110,9 @@ function AboutSection({ section, sectionRef }: { section: AboutSectionDefinition
   );
 }
 
-function AboutContent({ activeSection, sectionRefs, onScroll }: { activeSection: AboutSectionId; sectionRefs: Record<AboutSectionId, RefObject<HTMLElement | null>>; onScroll: () => void }) {
+function AboutContent({ activeSection, contentRef, sectionRefs, onScroll }: { activeSection: AboutSectionId; contentRef: RefObject<HTMLDivElement | null>; sectionRefs: Record<AboutSectionId, RefObject<HTMLElement | null>>; onScroll: () => void }) {
   return (
-    <div className="about-content" onScroll={onScroll} tabIndex={0} aria-label="About Joseph content">
+    <div ref={contentRef} className="about-content" onScroll={onScroll} tabIndex={0} aria-label="About Joseph content">
       <div className="about-content-track">
         {aboutSections.map((section) => (
           <AboutSection key={section.id} section={section} sectionRef={sectionRefs[section.id]} />
@@ -125,6 +125,7 @@ function AboutContent({ activeSection, sectionRefs, onScroll }: { activeSection:
 
 export function AboutApp({ title: _title, icon: _icon }: ApplicationComponentProps) {
   const [activeSection, setActiveSection] = useState<AboutSectionId>("overview");
+  const contentRef = useRef<HTMLDivElement>(null);
   const overviewRef = useRef<HTMLElement>(null);
   const journeyRef = useRef<HTMLElement>(null);
   const philosophyRef = useRef<HTMLElement>(null);
@@ -138,18 +139,20 @@ export function AboutApp({ title: _title, icon: _icon }: ApplicationComponentPro
 
   const selectSection = (id: AboutSectionId) => {
     setActiveSection(id);
-    sectionRefs[id].current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    const content = contentRef.current;
+    const section = sectionRefs[id].current;
+    if (!content || !section) return;
+    content.scrollTo({ top: section.offsetTop - 18, behavior: "smooth" });
   };
 
   const updateActiveSection = () => {
-    const ordered = aboutSections
-      .map(({ id }) => ({ id, top: Math.abs(sectionRefs[id].current?.offsetTop ?? Number.MAX_SAFE_INTEGER) }))
-      .sort((a, b) => a.top - b.top);
-    const contentTop = sectionRefs.overview.current?.parentElement?.parentElement?.scrollTop ?? 0;
-    const current = aboutSections
-      .map(({ id }) => ({ id, distance: Math.abs((sectionRefs[id].current?.offsetTop ?? 0) - contentTop - 18) }))
-      .sort((a, b) => a.distance - b.distance)[0];
-    if (ordered.length && current) setActiveSection(current.id);
+    const content = contentRef.current;
+    if (!content) return;
+    const atBottom = content.scrollTop + content.clientHeight >= content.scrollHeight - 8;
+    const current = atBottom
+      ? aboutSections.at(-1)
+      : [...aboutSections].reverse().find(({ id }) => (sectionRefs[id].current?.offsetTop ?? Number.MAX_SAFE_INTEGER) <= content.scrollTop + 36);
+    if (current) setActiveSection(current.id);
   };
 
   return (
@@ -157,7 +160,7 @@ export function AboutApp({ title: _title, icon: _icon }: ApplicationComponentPro
       <AboutHeader />
       <div className="about-workspace">
         <AboutNavigation activeSection={activeSection} onSelect={selectSection} />
-        <AboutContent activeSection={activeSection} sectionRefs={sectionRefs} onScroll={updateActiveSection} />
+        <AboutContent activeSection={activeSection} contentRef={contentRef} sectionRefs={sectionRefs} onScroll={updateActiveSection} />
       </div>
     </div>
   );

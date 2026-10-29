@@ -1,7 +1,8 @@
 import { Fingerprint, Lightbulb, Route, UserRound, type LucideIcon } from "lucide-react";
-import { useRef, useState, type RefObject } from "react";
+import { useRef, useState, type ReactNode, type RefObject } from "react";
 import { Button } from "@/components/ui/button";
 import type { ApplicationComponentProps } from "../application-registry";
+import { AboutProfile } from "./AboutProfile";
 
 type AboutSectionId = "overview" | "journey" | "philosophy" | "identity";
 
@@ -9,8 +10,9 @@ type AboutSectionDefinition = {
   id: AboutSectionId;
   label: string;
   eyebrow: string;
-  title: string;
-  description: string;
+  title?: string;
+  description?: string;
+  body?: ReactNode;
   icon: LucideIcon;
 };
 
@@ -19,8 +21,7 @@ const aboutSections: AboutSectionDefinition[] = [
     id: "overview",
     label: "Overview",
     eyebrow: "Profile overview",
-    title: "The person behind Joseph OS.",
-    description: "Personal introduction and core statement coming in the next milestone.",
+    body: <AboutProfile />,
     icon: UserRound,
   },
   {
@@ -101,11 +102,13 @@ function AboutSection({ section, sectionRef }: { section: AboutSectionDefinition
           <h2 id={`about-${section.id}-title`}>{section.label}</h2>
         </div>
       </div>
-      <div className="about-section-body">
-        <h3>{section.title}</h3>
-        <p>{section.description}</p>
-        <span>Content reserved for Phase 3B</span>
-      </div>
+      {section.body ?? (
+        <div className="about-section-body">
+          <h3>{section.title}</h3>
+          <p>{section.description}</p>
+          <span>Reserved for a later milestone</span>
+        </div>
+      )}
     </section>
   );
 }

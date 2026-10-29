@@ -1,7 +1,8 @@
-# Phase 3A About Joseph Application Architecture
+# Phase 3B — Identity & Introduction (Overview)
 
-- [x] Build the reusable About application shell and section components.
-- [x] Add accessible internal navigation and in-window scrolling.
-- [x] Add wide and narrow window-responsive layouts in the Joseph OS visual language.
-- [x] Register About without changing other application placeholders or the Window Manager.
-- [x] Verify About navigation and the complete Phase 2 window lifecycle.
+- [x] Upload and integrate Joseph's actual professional portrait (CDN asset, no AI replacement).
+- [x] Build AboutProfile composition: ProfilePortrait, ProfileIntroduction, ProfessionalHighlights, PersonalSignature.
+- [x] Represent BUILD • CREATE • IMPACT prominently and ✠ DEUS VULT as an understated muted-gold signature.
+- [x] Wide and narrow responsive identity layouts inside the About window.
+- [x] Keep Journey, Philosophy, Identity as placeholders; preserve scroll-aware navigation and Window Manager behavior.
+- [x] Verify live: portrait loads, wide/narrow layouts, navigation, window lifecycle intact.

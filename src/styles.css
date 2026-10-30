@@ -76,6 +76,7 @@
 .about-profile-highlight b{display:block;font-size:10px;font-weight:600;line-height:1.3}
 .about-profile-highlight i{position:absolute;top:9px;right:10px;font-family:var(--font-mono);font-size:6.5px;font-style:normal;letter-spacing:.1em;color:color-mix(in oklab,var(--mist) 60%,transparent)}
 @container(max-width:640px){.about-profile-grid{grid-template-columns:138px minmax(0,1fr);gap:16px}.about-profile-name{font-size:22px}.about-profile-intro p{font-size:10px}}
+@container(max-width:520px){.about-profile{gap:18px}.about-profile-grid{grid-template-columns:minmax(0,1fr);gap:16px}.about-profile-portrait{max-width:210px}.about-profile-name{font-size:22px}.about-profile-intro p{font-size:10px}.about-profile-highlight-list{grid-template-columns:repeat(2,minmax(0,1fr))}.about-profile-build{font-size:13px;letter-spacing:.16em}}
 
  .taskbar-running{position:relative}.taskbar-running::after{position:absolute;right:7px;bottom:3px;left:7px;height:2px;border-radius:2px;background:var(--signal);content:"";opacity:.75}.taskbar-running[aria-pressed="true"]{background:var(--glass-highlight);box-shadow:inset 0 -2px 0 var(--signal)}
   @keyframes menu-in{from{opacity:0;transform:translate(-50%,10px) scale(.98)}to{opacity:1;transform:translate(-50%,0) scale(1)}}@keyframes notice-in{from{opacity:0;transform:translate(-50%,6px)}to{opacity:1;transform:translate(-50%,0)}}@keyframes window-in{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}

@@ -3,6 +3,7 @@ import { useRef, useState, type ReactNode, type RefObject } from "react";
 import { Button } from "@/components/ui/button";
 import type { ApplicationComponentProps } from "../application-registry";
 import { AboutProfile } from "./AboutProfile";
+import { JourneySection } from "../journey/JourneySection";
 
 type AboutSectionId = "overview" | "journey" | "philosophy" | "identity";
 
@@ -28,8 +29,7 @@ const aboutSections: AboutSectionDefinition[] = [
     id: "journey",
     label: "Journey",
     eyebrow: "Path & milestones",
-    title: "A journey still being documented.",
-    description: "Joseph’s education, technical journey, and career development will be introduced here.",
+    body: <JourneySection />,
     icon: Route,
   },
   {

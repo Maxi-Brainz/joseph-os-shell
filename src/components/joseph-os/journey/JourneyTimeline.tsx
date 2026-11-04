@@ -1,8 +1,8 @@
 import { useState } from "react";
-import type { JourneyMilestone } from "./journey-data";
+import type { JourneyMilestone as JourneyMilestoneData } from "./journey-data";
 import { JourneyMilestone } from "./JourneyMilestone";
 
-export function JourneyTimeline({ milestones }: { milestones: JourneyMilestone[] }) {
+export function JourneyTimeline({ milestones }: { milestones: JourneyMilestoneData[] }) {
   const [expandedId, setExpandedId] = useState<string | null>(null);
 
   return (

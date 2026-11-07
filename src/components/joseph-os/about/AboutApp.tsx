@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import type { ApplicationComponentProps } from "../application-registry";
 import { AboutProfile } from "./AboutProfile";
 import { JourneySection } from "../journey/JourneySection";
+import { PhilosophySection } from "./PhilosophySection";
 
 type AboutSectionId = "overview" | "journey" | "philosophy" | "identity";
 
@@ -36,8 +37,7 @@ const aboutSections: AboutSectionDefinition[] = [
     id: "philosophy",
     label: "Philosophy",
     eyebrow: "Principles & practice",
-    title: "Build. Create. Impact.",
-    description: "A concise perspective on technology, creativity, impact, and continuous learning will live here.",
+    body: <PhilosophySection />,
     icon: Lightbulb,
   },
   {

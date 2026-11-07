@@ -1,10 +1,9 @@
-# Phase 3C — Education & Professional Journey
+# Phase 3D — Philosophy & Values
 
-- [x] Build Journey timeline: JourneySection, JourneyTimeline, JourneyMilestone, JourneyMilestoneDetails, AcademicProjectHighlight over structured journey-data.
-- [x] Represent academic foundation accurately (Federal University Wukari, B.Sc. CS 2024) with the CKD research project as an expandable highlight, reported results with context disclaimer.
-- [x] Represent Dotmac (2022–2023) accurately, including the intern → team-lead progression.
-- [x] Represent 2024–Present as four distinct concurrent roles (CSGGG, ASDGEPI, CSO Media, Agrovestors) — never sequential employment; no invented facts.
-- [x] Represent Century Information Systems as a post-graduation internship (no date range) and NITDA/NCAIR as ongoing training (2026–Present, not employment/certification).
-- [x] Milestones expand/collapse one at a time with restrained transitions and active timeline indicator.
-- [x] Wide/medium/narrow About-window layouts; internal scrolling only; no page-level scrolling.
-- [x] Verify live: navigation intact, Overview (3B) untouched, placeholders remain for Philosophy/Identity, Phase 2 window lifecycle intact, zero console errors.
+- [x] Replace only Philosophy placeholder with the two specified principles: Build with Purpose and Faith & Conviction.
+- [x] Keep first-person narratives faithful to the supplied brief; do not add principles or invented experiences.
+- [x] Communicate the relationship between purpose in building and grounded conviction.
+- [x] Reference ✠ DEUS VULT subtly within Faith & Conviction without duplicating the Overview branding block.
+- [x] Use focused content components and structured static Philosophy data.
+- [x] Add editorial styling and container-aware wide/narrow layouts inside About's existing scroller.
+- [ ] Verify live: Philosophy navigation, content, responsive layouts, Overview/Journey, window lifecycle, and no console errors.

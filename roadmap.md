@@ -6,4 +6,4 @@
 - [x] Reference ✠ DEUS VULT subtly within Faith & Conviction without duplicating the Overview branding block.
 - [x] Use focused content components and structured static Philosophy data.
 - [x] Add editorial styling and container-aware wide/narrow layouts inside About's existing scroller.
-- [ ] Verify live: Philosophy navigation, content, responsive layouts, Overview/Journey, window lifecycle, and no console errors.
+- [x] Verify live: Philosophy navigation/content, internal scrolling, 422px narrow layout without overflow, Overview/Journey, minimize/restore/maximize/close, and zero console errors.

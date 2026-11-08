@@ -3,6 +3,7 @@ import { useRef, useState, type ReactNode, type RefObject } from "react";
 import { Button } from "@/components/ui/button";
 import type { ApplicationComponentProps } from "../application-registry";
 import { AboutProfile } from "./AboutProfile";
+import { IdentitySection } from "./identity/IdentitySection";
 import { JourneySection } from "../journey/JourneySection";
 import { PhilosophySection } from "./PhilosophySection";
 
@@ -43,9 +44,8 @@ const aboutSections: AboutSectionDefinition[] = [
   {
     id: "identity",
     label: "Identity",
-    eyebrow: "Professional identity",
-    title: "Direction with purpose.",
-    description: "Professional identity, areas of interest, and future direction are reserved for a later milestone.",
+    eyebrow: "Technical identity",
+    body: <IdentitySection />,
     icon: Fingerprint,
   },
 ];
